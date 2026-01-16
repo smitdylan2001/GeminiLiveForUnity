@@ -112,6 +112,11 @@ public class IntegrationExample : MonoBehaviour
     
     public void Prompt(string message)
     {
+        if (Session == null)
+        {
+            Debug.LogWarning("Session is not initialized.", gameObject);
+            return;
+        }
         AsyncDispatcher.DispatchNonBlocking(ct => Session.PromptAsync(message, ct), destroyCancellationToken);
     }
 }
